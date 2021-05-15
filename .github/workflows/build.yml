@@ -22,13 +22,13 @@ jobs:
         include:
           - os: ubuntu-latest
             artifact_name: testjoin
-            asset_name: testjoin-linux-amd64
+            asset_name: testjoin
           - os: windows-latest
             artifact_name: testjoin.exe
-            asset_name: testjoin-windows-amd64
+            asset_name: testjoin.exe
           - os: macos-latest
             artifact_name: testjoin
-            asset_name: testjoin-macos-amd64
+            asset_name: testjoin
 
     runs-on: ${{ matrix.os }}
 
@@ -42,6 +42,6 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: target/release/${{ matrix.artifact_name }}
+          file: ${{ matrix.artifact_name }}
           asset_name: ${{ matrix.asset_name }}
           tag: ${{ github.ref }}
